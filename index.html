@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>AIoT 出海GTM 小工具</title>
+    <style>
+        body {font-family: Arial; max-width: 1000px; margin: 0 auto; padding: 20px; background: #f5f5f5;}
+        .card {background: white; padding: 20px; margin: 20px 0; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);}
+        textarea {width: 100%; height: 100px; margin: 10px 0; padding: 10px; box-sizing: border-box;}
+        button {background: #0066cc; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;}
+        .result {margin-top: 15px; padding: 15px; background: #f0f8ff; border-radius: 5px; white-space: pre-wrap;}
+        h1 {color: #222; text-align: center;}
+        .intro {text-align: center; color: #666; margin-bottom: 30px;}
+    </style>
+</head>
+<body>
+    <h1>AIoT 出海GTM轻量化工具</h1>
+    <p class="intro">基于AI大模型的智能硬件出海商业化小工具</p>
+
+    <div class="card">
+        <h3>1. AIoT 海外竞品分析</h3>
+        <textarea placeholder="输入产品：例如讯飞AI录音笔"></textarea>
+        <button onclick="getPrompt(1)">生成分析报告</button>
+        <div class="result" id="res1"></div>
+    </div>
+
+    <div class="card">
+        <h3>2. 海外营销话术生成（亚马逊/TikTok）</h3>
+        <textarea placeholder="输入中文产品卖点"></textarea>
+        <button onclick="getPrompt(2)">生成英文话术</button>
+        <div class="result" id="res2"></div>
+    </div>
+
+    <div class="card">
+        <h3>3. 用户评论痛点聚类分析</h3>
+        <textarea placeholder="粘贴亚马逊/电商用户评论"></textarea>
+        <button onclick="getPrompt(3)">生成痛点总结</button>
+        <div class="result" id="res3"></div>
+    </div>
+
+<script>
+function getPrompt(type) {
+    let text = document.querySelectorAll('textarea')[type-1].value;
+    let prompt = "";
+    if(type==1) prompt = `分析${text}的海外竞品，包含：定价、目标市场、核心卖点、GTM策略，简洁输出`;
+    if(type==2) prompt = `将以下AIoT产品卖点改成海外亚马逊/TikTok营销文案：${text}`;
+    if(type==3) prompt = `聚类以下用户评论的核心痛点，分点输出，用于产品优化和GTM策略：${text}`;
+    document.getElementById('res'+type).innerText = "✅ AI提示词已生成，复制到讯飞星火/ChatGPT即可输出结果：\n\n" + prompt;
+}
+</script>
+</body>
+</html>
